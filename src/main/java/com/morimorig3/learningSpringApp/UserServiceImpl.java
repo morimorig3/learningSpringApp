@@ -13,7 +13,7 @@ public class UserServiceImpl implements UserService {
         this.passwordEncoder = passwordEncoder;
     }
 
-    public void register(User user, String rawPassword){
-
+    public void register(){
+        System.out.println("execute register");
     }
 }

@@ -8,6 +8,9 @@ public class LearningSpringAppApplication {
 
 	public static void main(String[] args) {
 		SpringApplication.run(LearningSpringAppApplication.class, args);
-		System.out.println("unko");
+		// インターフェースを外から渡す形にすることで、他クラスへの依存度が下がる
+		UserRepository userRepository = new DummyUserRepository();
+		PasswordEncoder passwordEncoder = new DummyPasswordEncoder();
+		UserServiceImpl userService = new UserServiceImpl(userRepository, passwordEncoder);
 	}
 }

@@ -1,5 +1,8 @@
 package com.morimorig3.learningSpringApp;
 
+import org.apache.commons.logging.Log;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.context.annotation.Scope;
@@ -14,14 +17,12 @@ public class UserServiceImpl implements UserService {
     @Qualifier("lightWeight")
     PasswordEncoder passwordEncoder;
 
-    private String name;
+    private static final Logger log = LoggerFactory.getLogger(UserServiceImpl.class);
 
     public void register(){
-        if(name == null){
-            name = "popopo";
-            System.out.println(name);
-        }
+        log.info("registerメソッド開始: UserServiceImpl.register");// 冗長なログの仮実装例
         userRepository.userByUsername("execute register!!");
         passwordEncoder.encode("test");
+        log.info("registerメソッド終了: UserServiceImpl.register");
     }
 }

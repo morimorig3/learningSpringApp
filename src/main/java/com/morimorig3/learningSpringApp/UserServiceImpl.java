@@ -19,10 +19,14 @@ public class UserServiceImpl implements UserService {
 
     private static final Logger log = LoggerFactory.getLogger(UserServiceImpl.class);
 
-    public void register(){
-        log.info("registerメソッド開始: UserServiceImpl.register");// 冗長なログの仮実装例
+    public void register() {
+        // AOP: Before Advice
+        // AOP: Around Advice
         userRepository.userByUsername("execute register!!");
         passwordEncoder.encode("test");
-        log.info("registerメソッド終了: UserServiceImpl.register");
+        // AOP: After Returning Advice
+        // AOP: After Throwing Advice
+        // AOP: After Advice
+        // AOP: Around Advice
     }
 }

@@ -15,5 +15,7 @@ public class LearningSpringAppApplication {
 		ApplicationContext context = new AnnotationConfigApplicationContext(AppConfig.class);
 		UserServiceImpl userService = context.getBean(UserServiceImpl.class);
 		userService.register();
+		UserServiceImpl userService2 = context.getBean(UserServiceImpl.class);
+		userService2.register();
 	}
 }

@@ -5,6 +5,8 @@ import org.springframework.boot.autoconfigure.SpringBootApplication;
 import org.springframework.context.ApplicationContext;
 import org.springframework.context.annotation.AnnotationConfigApplicationContext;
 
+import java.util.List;
+
 @SpringBootApplication
 public class LearningSpringAppApplication {
 
@@ -14,7 +16,14 @@ public class LearningSpringAppApplication {
 		// 依存関係を記述するのはAppConfig.class
 		ApplicationContext context = new AnnotationConfigApplicationContext(AppConfig.class);
 		JdbcRoomDao jdbcRoomDao = context.getBean(JdbcRoomDao.class);
-		int maxCapacity = jdbcRoomDao.findMaxCapacity();
-		System.out.println(maxCapacity);
+		Room room1 = jdbcRoomDao.getRoomById("X999");
+		System.out.println(room1.getRoomId());
+		System.out.println(room1.getRoomName());
+		System.out.println(room1.getCapacity());
+
+		List<Room> roomList = jdbcRoomDao.getAllRoom();
+		for (Room room: roomList){
+			System.out.println(room.getRoomName());
+		}
 	}
 }

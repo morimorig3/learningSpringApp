@@ -13,11 +13,11 @@ import javax.sql.DataSource;
 @EnableAspectJAutoProxy
 @ComponentScan("com.morimorig3.learningSpringApp") // コンポーネントスキャンで@Componentが付与されているクラスをDIコンテナに登録する
 public class AppConfig {
-    @Bean
-    JdbcTemplate jdbcTemplate(DataSource dataSource){
-        System.out.println(dataSource);
-        return new JdbcTemplate(dataSource);
-    }
+//    @Bean
+//    JdbcTemplate jdbcTemplate(DataSource dataSource){
+//        System.out.println(dataSource);
+//        return new JdbcTemplate(dataSource);
+//    }
 //    @Bean
 //    UserRepository userRepository(){
 //        return new UserRepositoryImpl();

@@ -13,7 +13,8 @@ public class LearningSpringAppApplication {
 		// DIを利用することでこの実装でよくなる
 		// 依存関係を記述するのはAppConfig.class
 		ApplicationContext context = new AnnotationConfigApplicationContext(AppConfig.class);
-		UserServiceImpl userService = context.getBean(UserServiceImpl.class);
-		userService.register();
+		JdbcRoomDao jdbcRoomDao = context.getBean(JdbcRoomDao.class);
+		int maxCapacity = jdbcRoomDao.findMaxCapacity();
+		System.out.println(maxCapacity);
 	}
 }

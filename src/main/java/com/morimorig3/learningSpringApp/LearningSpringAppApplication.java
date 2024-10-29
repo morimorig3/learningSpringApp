@@ -16,13 +16,17 @@ public class LearningSpringAppApplication {
 		// 依存関係を記述するのはAppConfig.class
 		ApplicationContext context = new AnnotationConfigApplicationContext(AppConfig.class);
 		JdbcRoomDao jdbcRoomDao = context.getBean(JdbcRoomDao.class);
-		Room room1 = jdbcRoomDao.getRoomById("X999");
-		System.out.println(room1.getRoomId());
-		System.out.println(room1.getRoomName());
-		System.out.println(room1.getCapacity());
-
 		List<Room> roomList = jdbcRoomDao.getAllRoom();
 		for (Room room: roomList){
+			System.out.println(room.getRoomName());
+		}
+
+		Room newRoom = new Room("A002", "地獄の黙秘録", 1000);
+
+		jdbcRoomDao.updateByRoomId(newRoom);
+
+		List<Room> newRoomList = jdbcRoomDao.getAllRoom();
+		for (Room room: newRoomList){
 			System.out.println(room.getRoomName());
 		}
 	}

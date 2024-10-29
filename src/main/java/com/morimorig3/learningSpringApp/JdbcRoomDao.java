@@ -4,6 +4,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.jdbc.core.JdbcTemplate;
 import org.springframework.jdbc.core.namedparam.NamedParameterJdbcTemplate;
 import org.springframework.stereotype.Component;
+import org.springframework.transaction.annotation.Transactional;
 
 import java.util.ArrayList;
 import java.util.HashMap;
@@ -51,5 +52,23 @@ public class JdbcRoomDao {
         roomList.add(room);
         }
         return roomList;
+    }
+
+    @Transactional
+    public int updateByRoomId(Room room){
+        String sql = "UPDATE room SET room_name=?,capacity=? WHERE room_id=?";
+        return jdbcTemplate.update(sql, room.getRoomName(),room.getCapacity(), room.getRoomId());
+    }
+
+    @Transactional
+    public int insertRoom(Room room) {
+        String sql = "INSERT INTO room(room_id, room_name, capacity)" + "VALUES(?, ?, ?)";
+        return jdbcTemplate.update(sql, room.getRoomId(),  room.getRoomName(), room.getCapacity());
+    }
+
+    @Transactional
+    public int deleteByRoomId(String roomId){
+        String sql = "DELETE FROM room WHERE room_id = ?";
+        return jdbcTemplate.update(sql,roomId);
     }
 }
